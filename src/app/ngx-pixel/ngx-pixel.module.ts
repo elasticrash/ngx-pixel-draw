@@ -5,11 +5,13 @@ import { DimensionsComponent } from './components/dimensions/dimensions.componen
 import { BoardComponent } from './components/board/board.component';
 import { BlockComponent } from './components/block/block.component';
 import { SyncService } from './services/sync.service';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 
 export const myComponents = [
   DimensionsComponent,
   BoardComponent,
-  BlockComponent
+  BlockComponent,
+  ColorPickerComponent
 ]
 
 
@@ -20,9 +22,10 @@ export const myComponents = [
     ReactiveFormsModule
   ],
   declarations: [
-    ...myComponents
+    ...myComponents,
+
   ],
-  providers:[
+  providers: [
     SyncService
   ],
   exports: [
