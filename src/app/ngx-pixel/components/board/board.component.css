@@ -1,0 +1,23 @@
+.board {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.flex>block {
+    flex: 1 1 auto;
+    width: 1%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 20px;
+    padding: 5px;
+}
+
+.button {
+    min-height: 19px;
+    min-width: 19px;
+    display: inline-block;
+    background-color: lightblue;
+    border: none;
+}
