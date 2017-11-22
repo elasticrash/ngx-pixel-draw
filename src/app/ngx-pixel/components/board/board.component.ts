@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SyncService } from '../../services/sync.service';
 import { Dimensions } from '../../models/dimensions.model';
 
@@ -7,9 +7,12 @@ import { Dimensions } from '../../models/dimensions.model';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
+
 export class BoardComponent implements OnInit {
+  @ViewChild('square') block;
   public dimensions: Dimensions;
   public board: Array<Array<number>> = [[]];
+  public color: string;
 
   constructor(
     private syncService: SyncService
@@ -20,6 +23,14 @@ export class BoardComponent implements OnInit {
       this.dimensions = size;
       this.generateBoard();
     });
+
+    this.syncService.currentColor.subscribe((color: string) => {
+      this.color = color;
+    });
+  }
+
+  applyColor() {
+    this.block.nativeElement.style['background-color'] = this.color;
   }
 
   generateBoard() {
