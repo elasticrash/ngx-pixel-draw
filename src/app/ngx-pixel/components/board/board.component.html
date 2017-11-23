@@ -2,7 +2,7 @@
 <div class="board">
   <block *ngFor="let lines of board">
     <block *ngFor="let block of lines">
-      <button #square (click)="applyColor()" class="button"></button>
+      <div #square (click)="applyColor(square)" class="button"></div>
     </block>
   </block>
 </div>

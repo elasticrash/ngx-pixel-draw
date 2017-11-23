@@ -29,8 +29,8 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  applyColor() {
-    this.block.nativeElement.style['background-color'] = this.color;
+  applyColor(block) {
+    block.style['background-color'] = this.color;
   }
 
   generateBoard() {

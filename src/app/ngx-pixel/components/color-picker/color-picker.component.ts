@@ -7,11 +7,20 @@ import { SyncService } from '../../services/sync.service';
   styleUrls: ['./color-picker.component.css']
 })
 export class ColorPickerComponent implements OnInit {
-  public color: string;
+  public listOfColors: Array<string> = this.randomColorArray(10);
+  public selectedColor;
 
   constructor(
     private syncService: SyncService
   ) { }
+
+  private randomColorArray(arrayLength: number): Array<string> {
+    let rA = new Array(arrayLength).fill('');
+    rA.forEach((element, index) => {
+      rA[index] = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    });
+    return rA;
+  }
 
   ngOnInit() {
 
@@ -22,7 +31,10 @@ export class ColorPickerComponent implements OnInit {
   }
 
   public updateColor(): void {
-    this.syncService.currentColor.next(this.color)
+    this.syncService.currentColor.next(this.selectedColor)
   }
 
+  public syncColor(): void {
+    this.updateColor()
+  }
 }
