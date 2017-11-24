@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { SyncService } from '../../services/sync.service';
 import { Dimensions } from '../../models/dimensions.model';
 
@@ -10,6 +10,7 @@ import { Dimensions } from '../../models/dimensions.model';
 
 export class BoardComponent implements OnInit {
   @ViewChild('square') block;
+  @Input() public mode = "click";
   public dimensions: Dimensions;
   public board: Array<Array<number>> = [[]];
   public color: string;
@@ -29,8 +30,10 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  applyColor(block) {
-    block.style['background-color'] = this.color;
+  applyColor(block, e) {
+    if (e.type === this.mode) {
+      block.style['background-color'] = this.color;
+    }
   }
 
   generateBoard() {
