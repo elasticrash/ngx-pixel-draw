@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+click <input type="radio" value="click"  [(ngModel)]="mode">
+mouseenter <input type="radio" value="mouseenter"  [(ngModel)]="mode">
+
+<div class="board">
+  <block *ngFor="let lines of board">
+    <block *ngFor="let block of lines">
+      <div #square (mouseenter)="applyColor(square, $event)" (click)="applyColor(square, $event)" class="button"></div>
+    </block>
+  </block>
+</div>

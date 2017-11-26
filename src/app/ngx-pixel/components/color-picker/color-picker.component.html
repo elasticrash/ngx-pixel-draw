@@ -1,0 +1,3 @@
+<select *ngIf="listOfColors.length > 0" name="colorList" (change)="syncColor()" [(ngModel)]="selectedColor">
+    <option *ngFor="let c of listOfColors; let i = index" value="{{ c }}">{{ c }}</option>
+</select>
