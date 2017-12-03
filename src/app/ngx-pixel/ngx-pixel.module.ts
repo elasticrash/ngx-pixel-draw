@@ -6,13 +6,16 @@ import { BoardComponent } from './components/board/board.component';
 import { BlockComponent } from './components/block/block.component';
 import { SyncService } from './services/sync.service';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
+import { DecodePngService } from './services/decode-png.service';
+import { OpenFileComponent } from './components/open-file/open-file.component';
 
 export const myComponents = [
   DimensionsComponent,
   BoardComponent,
   BlockComponent,
-  ColorPickerComponent
-]
+  ColorPickerComponent,
+  OpenFileComponent
+];
 
 
 @NgModule({
@@ -26,7 +29,8 @@ export const myComponents = [
 
   ],
   providers: [
-    SyncService
+    SyncService,
+    DecodePngService
   ],
   exports: [
     ...myComponents
