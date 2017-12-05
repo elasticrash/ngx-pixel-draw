@@ -12,4 +12,8 @@ describe('DecodePngService', () => {
   it('should be created', inject([DecodePngService], (service: DecodePngService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should be created', inject([DecodePngService], (service: DecodePngService) => {
+    expect(service.base64Decode('T')).toEqual('010011');
+  }));
 });
