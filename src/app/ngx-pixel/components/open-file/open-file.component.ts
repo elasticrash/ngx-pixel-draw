@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SyncService } from '../../services/sync.service';
 import { DecodePngService } from '../../services/decode-png.service';
+import * as getPixels from 'get-pixels';
 
 @Component({
   selector: 'open-file',
@@ -23,15 +24,14 @@ export class OpenFileComponent implements OnInit {
     const reader = new FileReader();
     const self = this;
     reader.onloadend = (e) => {
-      self.decode(reader.result);
+      getPixels(reader.result, (err, pixels) => {
+        if (err) {
+          console.log('Bad image path');
+        } else {
+          console.log('got pixels', pixels);
+        }
+      });
     };
     reader.readAsDataURL(this.file.nativeElement.files[0]);
-  }
-
-  public decode(base64) {
-    for (let index = 0; index < base64.length; index++) {
-      const element = base64[index];
-      this.bytes.push(this.decodeService.base64Decode(element));
-    }
   }
 }
