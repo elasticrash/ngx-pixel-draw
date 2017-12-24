@@ -8,7 +8,7 @@ import { SyncService } from '../../services/sync.service';
   styleUrls: ['./dimensions.component.css']
 })
 export class DimensionsComponent implements OnInit {
-  public dimensions: Dimensions = new Dimensions(100, 100);
+  public dimensions: Dimensions = new Dimensions(20, 20);
 
   constructor(
     private syncService: SyncService
@@ -18,7 +18,7 @@ export class DimensionsComponent implements OnInit {
   }
 
   updateSize() {
-    this.syncService.currentSize.next(this.dimensions)
+    this.syncService.updateCurrentSize(this.dimensions);
   }
 
 }
