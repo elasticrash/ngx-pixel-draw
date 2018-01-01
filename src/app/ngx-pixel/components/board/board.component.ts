@@ -49,6 +49,7 @@ export class BoardComponent implements OnInit {
   }
 
   public generateBoard() {
+    this.board = [];
     for (let i = 0; i < this.syncService.width; i += 1) {
       this.board[i] = [];
       for (let j = 0; j < this.syncService.height; j += 1) {
