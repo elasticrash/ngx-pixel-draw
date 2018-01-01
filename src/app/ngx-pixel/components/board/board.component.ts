@@ -32,8 +32,9 @@ export class BoardComponent implements OnInit {
     });
 
     this.syncService.currentMatrix.subscribe((matrix: any) => {
+      console.log(matrix);
       if (matrix.length === 0) {
-        this.board = Array(this.dimensions.width).fill(Array(this.dimensions.height).fill('#e7f2ff'));
+        this.generateBoard();
       } else {
         this.reSampleImage(matrix);
         console.log('board', this.board);
@@ -48,7 +49,12 @@ export class BoardComponent implements OnInit {
   }
 
   public generateBoard() {
-    this.board = Array(this.dimensions.width).fill(Array(this.dimensions.height).fill('#e7f2ff'));
+    for (let i = 0; i < this.syncService.width; i += 1) {
+      this.board[i] = [];
+      for (let j = 0; j < this.syncService.height; j += 1) {
+        this.board[i][j] = '#e7f2ff';
+      }
+    }
   }
 
   private addHexColor(c1, c2) {
@@ -65,13 +71,38 @@ export class BoardComponent implements OnInit {
     return result;
   }
 
-  private reSampleImage(image) {
-    const ratio = this.syncService.shape[0] / this.syncService.width;
+  private reSampleImage(matrix) {
+    const ratioX = Math.floor(this.syncService.shape[0] / this.syncService.width);
+    const ratioY = Math.floor(this.syncService.shape[1] / this.syncService.height);
 
-    for (let i = 0; i < this.syncService.width; i++) {
-      for (let j = 0; j < this.syncService.height; j++) {
-        this.board[i][j] = '#' + image[Math.floor(i * ratio)][Math.floor(j * ratio)];
+    for (let i = 0; i < this.syncService.width; i += 1) {
+      for (let j = 0; j < this.syncService.height; j += 1) {
+
+        let colorValue = [0, 0, 0];
+        for (let x = 0; x < Math.ceil(ratioX); x++) {
+          for (let y = 0; y < Math.ceil(ratioY); y++) {
+            colorValue = [
+              colorValue[0] + matrix[(i * ratioX) + x][(j * ratioY) + y][0],
+              colorValue[1] + matrix[(i * ratioX) + x][(j * ratioY) + y][1],
+              colorValue[2] + matrix[(i * ratioX) + x][(j * ratioY) + y][2]
+            ];
+          }
+        }
+        this.board[i][j] = '#' + this.rgbToHex(
+          Math.floor(colorValue[0] / (ratioX * ratioY)),
+          Math.floor(colorValue[1] / (ratioX * ratioY)),
+          Math.floor(colorValue[2] / (ratioX * ratioY))
+        );
       }
     }
+  }
+
+  private intensityToHex(c) {
+    const hex = c.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  }
+
+  private rgbToHex(r, g, b) {
+    return this.intensityToHex(r) + this.intensityToHex(g) + this.intensityToHex(b);
   }
 }

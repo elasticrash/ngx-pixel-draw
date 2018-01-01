@@ -10,7 +10,7 @@ export class SyncService {
 
   private _width = 10;
   private _height = 10;
-  private _colorMatrix: string[][];
+  private _colorMatrix: number[][][];
   private _shape: any;
 
   get shape() {
