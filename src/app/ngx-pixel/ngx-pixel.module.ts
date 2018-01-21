@@ -8,13 +8,24 @@ import { SyncService } from './services/sync.service';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { DecodePngService } from './services/decode-png.service';
 import { OpenFileComponent } from './components/open-file/open-file.component';
+import { D3Service } from '../d3/d3.service';
+import { GraphComponent } from '../visuals/graph/graph.component';
+import { DraggableDirective } from '../d3/directives/draggable.directives';
+import { ZoomableDirective } from '../d3/directives/zoomable.directive';
+import { LinkVisualComponent } from '../visuals/shared/link-visual.component';
+import { NodeVisualComponent } from '../visuals/shared/node-visual.component';
 
 export const myComponents = [
   DimensionsComponent,
   BoardComponent,
   BlockComponent,
   ColorPickerComponent,
-  OpenFileComponent
+  OpenFileComponent,
+  GraphComponent,
+  DraggableDirective,
+  ZoomableDirective,
+  LinkVisualComponent,
+  NodeVisualComponent
 ];
 
 
@@ -29,7 +40,8 @@ export const myComponents = [
   ],
   providers: [
     SyncService,
-    DecodePngService
+    DecodePngService,
+    D3Service
   ],
   exports: [
     ...myComponents
