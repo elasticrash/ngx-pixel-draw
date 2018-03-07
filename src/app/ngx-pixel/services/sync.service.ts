@@ -30,7 +30,7 @@ export class SyncService {
   }
 
   get height() {
-    return this._width;
+    return this._height;
   }
 
   set height(height) {
