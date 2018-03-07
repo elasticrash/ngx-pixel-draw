@@ -26,7 +26,6 @@ export const myComponents = [
   ],
   declarations: [
     ...myComponents,
-
   ],
   providers: [
     SyncService,

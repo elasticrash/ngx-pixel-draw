@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoardComponent } from './board.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BlockComponent } from '../block/block.component';
+import { SyncService } from '../../services/sync.service';
+import { DecodePngService } from '../../services/decode-png.service';
 
 describe('BoardComponent', () => {
   let component: BoardComponent;
@@ -8,9 +13,21 @@ describe('BoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoardComponent ]
+      declarations: [
+        BoardComponent,
+        BlockComponent
+      ],
+      imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      providers: [
+        SyncService,
+        DecodePngService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

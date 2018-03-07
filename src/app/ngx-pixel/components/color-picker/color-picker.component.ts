@@ -15,7 +15,7 @@ export class ColorPickerComponent implements OnInit {
   ) { }
 
   private randomColorArray(arrayLength: number): Array<string> {
-    let rA = new Array(arrayLength).fill('');
+    const rA = new Array(arrayLength).fill('');
     rA.forEach((element, index) => {
       rA[index] = '#' + Math.floor(Math.random() * 16777215).toString(16);
     });

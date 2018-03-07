@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DecodePngService } from '../../services/decode-png.service';
+import { SyncService } from '../../services/sync.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { BlockComponent } from './block.component';
 
 describe('BlockComponent', () => {
@@ -8,9 +11,18 @@ describe('BlockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlockComponent ]
+      declarations: [BlockComponent],
+      imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      providers: [
+        SyncService,
+        DecodePngService
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

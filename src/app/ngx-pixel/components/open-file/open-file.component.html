@@ -1,1 +1,5 @@
-<input type="file" accept=".png">
+<input #file (change)="readFile()" type="file" accept=".png">
+
+<!-- <div *ngFor="let byte of bytes">
+    {{ byte }}
+</div> -->
