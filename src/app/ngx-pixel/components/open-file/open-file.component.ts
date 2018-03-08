@@ -5,6 +5,7 @@ import * as getPixels from 'get-pixels';
 import * as ndarray from 'ndarray';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'open-file',
   templateUrl: './open-file.component.html',
   styleUrls: ['./open-file.component.css']

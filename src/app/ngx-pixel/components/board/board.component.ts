@@ -3,6 +3,7 @@ import { SyncService } from '../../services/sync.service';
 import { Dimensions } from '../../models/dimensions.model';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
@@ -72,7 +73,26 @@ export class BoardComponent implements OnInit {
     return result;
   }
 
+  private middleColorIntensity(matrix) {
+    let colorValue = [0, 0, 0];
+
+    for (let i = 0; i < matrix.length; i += 1) {
+      for (let j = 0; j < matrix[i].length; j += 1) {
+        colorValue = [
+          colorValue[0] + matrix[i][j][0],
+          colorValue[1] + matrix[i][j][1],
+          colorValue[2] + matrix[i][j][2]
+        ];
+      }
+    }
+    const matrixSize = matrix.length * matrix[0].length;
+
+    return ((colorValue[0] / matrixSize) + (colorValue[1] / matrixSize) + (colorValue[2] / matrixSize)) / 3;
+  }
+
   private reSampleImage(matrix) {
+    const averageMid = this.middleColorIntensity(matrix);
+    console.log(`averageMid ${averageMid}`);
     const ratioX = Math.floor(this.syncService.shape[0] / this.syncService.width);
     const ratioY = Math.floor(this.syncService.shape[1] / this.syncService.height);
 
@@ -89,13 +109,27 @@ export class BoardComponent implements OnInit {
             ];
           }
         }
+
+        const binary = this.toBinary(colorValue, (ratioX * ratioY), averageMid);
+
         this.board[i][j] = '#' + this.rgbToHex(
-          Math.floor(colorValue[0] / (ratioX * ratioY)),
-          Math.floor(colorValue[1] / (ratioX * ratioY)),
-          Math.floor(colorValue[2] / (ratioX * ratioY))
+          Math.floor(binary),
+          Math.floor(binary),
+          Math.floor(binary)
         );
       }
     }
+  }
+
+  private toBinary(colorValue, m, averageMid): number {
+    let colorSum = 0;
+    colorValue.forEach(element => {
+      colorSum += element / m;
+    });
+
+    colorSum = colorSum / colorValue.length;
+
+    return (colorSum > averageMid) ? 255 : 0;
   }
 
   private intensityToHex(c) {

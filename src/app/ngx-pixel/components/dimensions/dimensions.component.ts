@@ -3,6 +3,7 @@ import { Dimensions } from '../../models/dimensions.model';
 import { SyncService } from '../../services/sync.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'dimensions',
   templateUrl: './dimensions.component.html',
   styleUrls: ['./dimensions.component.css']
