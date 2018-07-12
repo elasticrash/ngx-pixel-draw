@@ -1,0 +1,11 @@
+<svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
+    <g>
+        <g class="x axis" [attr.fill]="none">
+            <svg:g [tick]="d" *ngFor="let d of data"></svg:g>
+        </g>
+        <g class="y axis" [attr.fill]="none">
+            <svg:g [tick]="d" *ngFor="let d of data"></svg:g>
+        </g>
+        <rect *ngFor="let data of data"></rect>
+    </g>
+</svg>

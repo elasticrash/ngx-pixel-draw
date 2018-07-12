@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Node, Link } from './d3/models';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,44 +7,35 @@ import { Node, Link } from './d3/models';
 })
 export class AppComponent {
   title = 'app';
-
-  nodes: Node[] = [];
-  links: Link[] = [];
+  data = [
+    { name: 'A', value: .08167, color: '#000' },
+    { name: 'B', value: .01492, color: '#000' },
+    { name: 'C', value: .02782, color: '#000' },
+    { name: 'D', value: .04253, color: '#000' },
+    { name: 'E', value: .12702, color: '#000' },
+    { name: 'F', value: .02288, color: '#000' },
+    { name: 'G', value: .02015, color: '#000' },
+    { name: 'H', value: .06094, color: '#000' },
+    { name: 'I', value: .06966, color: '#000' },
+    { name: 'J', value: .00153, color: '#000' },
+    { name: 'K', value: .00772, color: '#000' },
+    { name: 'L', value: .04025, color: '#000' },
+    { name: 'M', value: .02406, color: '#000' },
+    { name: 'N', value: .06749, color: '#000' },
+    { name: 'O', value: .07507, color: '#000' },
+    { name: 'P', value: .01929, color: '#000' },
+    { name: 'Q', value: .00095, color: '#000' },
+    { name: 'R', value: .05987, color: '#000' },
+    { name: 'S', value: .06327, color: '#000' },
+    { name: 'T', value: .09056, color: '#000' },
+    { name: 'U', value: .02758, color: '#000' },
+    { name: 'V', value: .00978, color: '#000' },
+    { name: 'W', value: .02360, color: '#000' },
+    { name: 'X', value: .00150, color: '#000' },
+    { name: 'Y', value: .01974, color: '#000' },
+    { name: 'Z', value: .00074, color: '#000' }
+  ];
 
   constructor() {
-    const conf = {
-      N: 100,
-      SPECTRUM: [
-        // "rgb(222,237,250)"
-        'rgb(176,212,243)',
-        'rgb(128,186,236)',
-        'rgb(77,158,228)',
-        'rgb(38,137,223)',
-        'rgb(0,116,217)',
-        'rgb(0,106,197)'
-        // "rgb(0,94,176)"
-        // "rgb(0,82,154)"
-        // "rgb(0,60,113)"
-      ]
-    },
-      getIndex = number => number - 1;
-
-    const N = conf.N;
-
-    /** constructing the nodes array */
-    for (let i = 1; i <= N; i++) {
-      this.nodes.push(new Node(i));
-    }
-
-    for (let i = 1; i <= N; i++) {
-      for (let m = 2; i * m <= N; m++) {
-        /** increasing connections toll on connecting nodes */
-        this.nodes[getIndex(i)].linkCount++;
-        this.nodes[getIndex(i * m)].linkCount++;
-
-        /** connecting the nodes before starting the simulation */
-        this.links.push(new Link(i, i * m));
-      }
-    }
   }
 }

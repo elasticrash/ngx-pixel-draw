@@ -8,12 +8,8 @@ import { SyncService } from './services/sync.service';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { DecodePngService } from './services/decode-png.service';
 import { OpenFileComponent } from './components/open-file/open-file.component';
-import { D3Service } from '../d3/d3.service';
 import { GraphComponent } from '../visuals/graph/graph.component';
-import { DraggableDirective } from '../d3/directives/draggable.directives';
-import { ZoomableDirective } from '../d3/directives/zoomable.directive';
-import { LinkVisualComponent } from '../visuals/shared/link-visual.component';
-import { NodeVisualComponent } from '../visuals/shared/node-visual.component';
+import { TickComponent } from '../visuals/shared/tick.component';
 
 export const myComponents = [
   DimensionsComponent,
@@ -22,11 +18,15 @@ export const myComponents = [
   ColorPickerComponent,
   OpenFileComponent,
   GraphComponent,
+<<<<<<< HEAD
   DraggableDirective,
   ZoomableDirective,
   LinkVisualComponent,
   LinkVisualComponent,
   NodeVisualComponent
+=======
+  TickComponent
+>>>>>>> cfd64c1f3c0bc3153499b83f191f5d6b9dcaf284
 ];
 
 
@@ -41,8 +41,7 @@ export const myComponents = [
   ],
   providers: [
     SyncService,
-    DecodePngService,
-    D3Service
+    DecodePngService
   ],
   exports: [
     ...myComponents
