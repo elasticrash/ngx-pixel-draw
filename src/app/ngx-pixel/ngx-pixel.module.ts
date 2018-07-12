@@ -25,6 +25,7 @@ export const myComponents = [
   DraggableDirective,
   ZoomableDirective,
   LinkVisualComponent,
+  LinkVisualComponent,
   NodeVisualComponent
 ];
 
